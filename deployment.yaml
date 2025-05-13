@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: supportportal
+  labels:
+    app: spt2
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: spt2
+  template:
+    metadata:
+      labels:
+        app: spt2
+    spec:
+      containers:
+      - name: supportportal
+        image: nagaraju7876482/spt2:latest
+        ports:
+        - containerPort: 8080
