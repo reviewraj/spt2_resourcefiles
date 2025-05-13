@@ -5,7 +5,7 @@ metadata:
   labels:
     app: spt2
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: spt2
@@ -19,3 +19,14 @@ spec:
         image: nagaraju7876482/spt2:latest
         ports:
         - containerPort: 8080
+        env:
+        - name: spring.mail.password
+          valueFrom:
+            secretKeyRef:
+              name: spt2
+              key: gmail-secret
+        - name: spring.security.oauth2.client.registration.github.client-secret
+          valueFrom:
+            secretKeyRef:
+              name: spt2
+              key: github-secret
